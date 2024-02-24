@@ -137,43 +137,48 @@ add_action('widgets_init', function () {
     ] + $config);
 });
 
-/**
- * Register a REST API endpoint for 'publikacje'.
- *
- * @return void
- */
+// Register the 'tag-publikacja' taxonomy for 'publikacja' post type.
+add_action('init', function () {
+    register_taxonomy('tag-publikacja', 'publikacja', [
+        'label' => __('Tag Publikacja', 'sage'),
+        'rewrite' => ['slug' => 'tag-publikacja'],
+        'hierarchical' => true,
+    ]);
+});
+
+// Register a REST API endpoint for 'publikacja'.
 add_action('rest_api_init', function () {
-    register_rest_route('sage/v1', '/publikacje', [
+    register_rest_route('sage/v1', '/publikacja', [
         'methods' => 'GET',
         'callback' => 'App\\rest_api_get_publikacje',
         'permission_callback' => '__return_true',
     ]);
 });
 
-/**
- * The callback function for the 'publikacje' REST API endpoint.
- *
- * Handles the logic to retrieve and respond with 'publikacje' data.
- *
- * @param WP_REST_Request $request Request object.
- * @return WP_REST_Response Response object.
- */
 function rest_api_get_publikacje(WP_REST_Request $request) {
-    // Example logic to retrieve 'publikacje'. Adjust query as needed.
     $args = [
         'post_type' => 'publikacja',
         'posts_per_page' => -1,
-        // Include additional query parameters as needed.
     ];
 
     $query = new \WP_Query($args);
     $posts = [];
 
     foreach ($query->posts as $post) {
+        // Fetch taxonomy terms for the post
+        $taxonomies = wp_get_post_terms($post->ID, 'tag-publikacja', ['fields' => 'all']);
+
+        $taxonomies_formatted = array_map(function($term) {
+            return [
+                'name' => $term->name,
+                'slug' => $term->slug,
+            ];
+        }, $taxonomies);
+
         $posts[] = [
             'title' => get_the_title($post->ID),
-            'opis' => get_field('opis', $post->ID),
-            
+            'description' => get_field('description', $post->ID), // Assuming ACF is being used
+            'taxonomies' => $taxonomies_formatted,
         ];
     }
 
