@@ -1,0 +1,19 @@
+.wrapper {
+    display: grid;
+    grid-gap: 15px;
+  }
+  
+  .full-width {
+    grid-column: span 12;
+  }
+
+  @for $i from 1 through 6 {
+    .col-#{$i} {
+      grid-column: span $i;
+    }
+  }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
