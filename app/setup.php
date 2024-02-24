@@ -144,7 +144,7 @@ add_action('widgets_init', function () {
  */
 add_action('rest_api_init', function () {
     register_rest_route('sage/v1', '/publikacje', [
-        'methods' => 'POST',
+        'methods' => 'GET',
         'callback' => 'App\\rest_api_get_publikacje',
         'permission_callback' => '__return_true',
     ]);
