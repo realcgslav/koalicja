@@ -18,10 +18,6 @@
     </div>
 </div>
 
-@push('scripts')
-<script src="{{ asset('scripts/publikacje-ajax.js') }}"></script>
-@endpush
 @endsection
-
 
 

@@ -164,18 +164,23 @@ add_action('rest_api_init', function () {
         ],
     ];
 }
-       
-
             $query = new \WP_Query($args);
-            return new \WP_REST_Response($query->posts, 200);
-        },
-    ]);
-});
+            $posts = [];
 
-add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('koalicja-ajax', get_theme_file_uri('/resources/scripts/publikacje-ajax.js'), ['jquery'], null, true);
-    wp_localize_script('koalicja-ajax', 'koalicjaApi', [
-        'root' => esc_url_raw(rest_url('koalicja/v1/publikacje')),
-        'nonce' => wp_create_nonce('wp_rest'),
+            if ($query->have_posts()) : 
+                while ($query->have_posts()) : $query->the_post();
+                    $id = get_the_ID();
+                    $posts[] = [
+                        'title' => get_the_title(),
+                        'opis' => get_field('opis', $id),
+                        'okladka' => get_field('okladka', $id) ? get_field('okladka', $id)['url'] : '', // Zakładając, że pole 'okladka' jest obrazem
+                        'pdf' => get_field('pdf', $id) ? get_field('pdf', $id)['url'] : '', // Zakładając, że pole 'pdf' jest plikiem
+                    ];
+                endwhile;
+                wp_reset_postdata();
+            endif;
+
+            return new \WP_REST_Response($posts, 200);
+        },
     ]);
 });

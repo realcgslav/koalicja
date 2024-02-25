@@ -3,16 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const tagCheckboxes = document.querySelectorAll('.filter-tag');
     const publicationsContainer = document.getElementById('publikacje-list');
 
-    // Funkcja do pobrania zaznaczonych tagów
-    const getSelectedTags = () => {
+    function getSelectedTags() {
         return Array.from(tagCheckboxes)
                      .filter(checkbox => checkbox.checked)
                      .map(checkbox => checkbox.dataset.tag)
                      .join(',');
-    };
-
-    searchInput.addEventListener('input', filterPublications);
-    tagCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterPublications));
+    }
 
     function filterPublications() {
         const searchValue = searchInput.value;
@@ -30,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     data.forEach(function(publikacja) {
                         const div = document.createElement('div');
                         div.className = 'publikacja';
-                        div.innerHTML = `<h2>${publikacja.post_title}</h2><p>${publikacja.post_content}</p>`;
+                        div.innerHTML = `<h2>${publikacja.post_title}</h2><p>${publikacja.post_content ? publikacja.post_content : ''}</p>`;
                         publicationsContainer.appendChild(div);
                     });
                 } else {
@@ -43,4 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
             },
         });
     }
+
+    searchInput.addEventListener('input', filterPublications);
+    tagCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterPublications));
+
+    // Wywołaj funkcję filterPublications bezpośrednio po zdefiniowaniu, aby załadować wszystkie publikacje domyślnie.
+    filterPublications();
 });
