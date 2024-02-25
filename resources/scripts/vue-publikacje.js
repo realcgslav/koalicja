@@ -7,4 +7,3 @@ createApp({
     }
   }
 }).mount('#vue-publikacje')
-

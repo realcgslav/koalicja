@@ -1,3 +1,7 @@
+{{--
+  Template Name: Publikacje
+--}}
+
 @extends('layouts.app')
 
 <div id="vue-publikacje">
@@ -6,6 +10,3 @@
   </button>
 </div>
 
-@push('scripts')
-  <script src="@asset('scripts/vue-publikacje.js')"></script>
-@endpush
