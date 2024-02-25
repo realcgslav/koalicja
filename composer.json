@@ -40,7 +40,7 @@
   },
   "require": {
     "php": "^8.0",
-    "roots/acorn": "^4.0",
+    "roots/acorn": "^4.0.2",
     "roots/acorn-prettify": "^1.0"
   },
   "require-dev": {
