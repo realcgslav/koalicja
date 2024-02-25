@@ -115,6 +115,8 @@ add_action('after_setup_theme', function () {
     add_theme_support('customize-selective-refresh-widgets');
 }, 20);
 
+
+
 /**
  * Register the theme sidebars.
  *
@@ -169,7 +171,7 @@ add_action('rest_api_init', function () {
 });
 
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('koalicja-ajax', get_theme_file_uri('/resources/scripts/app.js'), ['jquery'], null, true);
+    wp_enqueue_script('koalicja-ajax', get_theme_file_uri('/resources/scripts/publikacje-ajax.js'), ['jquery'], null, true);
     wp_localize_script('koalicja-ajax', 'koalicjaApi', [
         'root' => esc_url_raw(rest_url('koalicja/v1/publikacje')),
         'nonce' => wp_create_nonce('wp_rest'),
