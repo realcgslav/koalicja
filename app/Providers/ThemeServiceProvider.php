@@ -31,6 +31,8 @@ class ThemeServiceProvider extends SageServiceProvider
         View::composer('partials.sticky-slider', \App\View\Composers\StickyPostsComposer::class);
         View::composer('partials.latest-news', \App\View\Composers\LatestNewsComposer::class);
         View::composer('template-publikacje', \App\View\Composers\PublikacjeDisplayComposer::class);
+        View::composer('partials.navigation', \App\View\Composers\NavigationComposer::class);
+
        
     }
 
