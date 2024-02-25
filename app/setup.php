@@ -9,6 +9,8 @@ namespace App;
 use function Roots\bundle;
 use WP_REST_Response;
 use WP_REST_Request;
+use Illuminate\Support\Facades\Route;
+use Roots\Acorn\Application;
 
 /**
  * Register the theme assets.
@@ -135,4 +137,41 @@ add_action('widgets_init', function () {
         'name' => __('Footer', 'sage'),
         'id' => 'sidebar-footer',
     ] + $config);
+});
+
+
+add_action('rest_api_init', function () {
+    register_rest_route('koalicja/v1', '/publikacje', [
+        'methods' => 'GET',
+        'callback' => function ($request) {
+            $tag = $request->get_param('tag');
+            $search = $request->get_param('search');
+            $args = [
+                'post_type' => 'publikacja',
+                'posts_per_page' => -1,
+                's' => $search,
+            ];
+
+            if ($tag) {
+                $args['tax_query'] = [
+                    [
+                        'taxonomy' => 'tag-publikacji',
+                        'field' => 'slug',
+                        'terms' => $tag,
+                    ],
+                ];
+            }
+
+            $query = new WP_Query($args);
+            return new WP_REST_Response($query->posts, 200);
+        },
+    ]);
+});
+
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_script('koalicja-ajax', get_theme_file_uri('/resources/scripts/app.js'), ['jquery'], null, true);
+    wp_localize_script('koalicja-ajax', 'koalicjaApi', [
+        'root' => esc_url_raw(rest_url('koalicja/v1/publikacje')),
+        'nonce' => wp_create_nonce('wp_rest'),
+    ]);
 });
