@@ -153,7 +153,16 @@ add_action('rest_api_init', function () {
                 'posts_per_page' => -1,
                 's' => $search,
             ];
-
+ // Dodajemy zapytanie dla 'tax_query' tylko jeśli '$tag' nie jest puste
+ if (!empty($tag)) {
+    $args['tax_query'] = [
+        [
+            'taxonomy' => 'tag-publikacji',
+            'field' => 'slug',
+            'terms' => $tag,
+        ],
+    ];
+}
             if ($tag) {
                 $args['tax_query'] = [
                     [
@@ -164,8 +173,8 @@ add_action('rest_api_init', function () {
                 ];
             }
 
-            $query = new WP_Query($args);
-            return new WP_REST_Response($query->posts, 200);
+            $query = new \WP_Query($args);
+            return new \WP_REST_Response($query->posts, 200);
         },
     ]);
 });
