@@ -9,8 +9,9 @@
     <input type="text" id="search" placeholder="Szukaj publikacji...">
     <div>
       @foreach($tags as $tag)
-        <button class="filter-tag" data-tag="{{ $tag->slug }}">{{ $tag->name }}</button>
-      @endforeach
+      <input type="checkbox" class="filter-tag" id="tag-{{ $tag->slug }}" data-tag="{{ $tag->slug }}">
+      <label for="tag-{{ $tag->slug }}">{{ $tag->name }}</label>
+    @endforeach
     </div>
     <div id="publikacje-list">
       @forelse($publikacje->posts as $post)
