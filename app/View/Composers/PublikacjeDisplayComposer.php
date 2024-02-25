@@ -22,30 +22,29 @@ class PublikacjeDisplayComposer extends Composer
      */
     public function override()
     {
-        return [
-            'publikacje' => $this->publikacje(),
-        ];
-    }
-
-    /**
-     * Query 'publikacja' posts with 'tag-publikacja' taxonomy.
-     *
-     * @return mixed
-     */
-    protected function publikacje()
-    {
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         $args = [
             'post_type' => 'publikacja',
-            'posts_per_page' => -1, // Fetch all posts
+            'posts_per_page' => 10,
+            'paged' => $paged,
             'tax_query' => [
                 [
-                    'taxonomy' => 'tag-publikacja',
-                    'field'    => 'slug',
-                    'terms'    => 'tag-publikacja',
-                ],
-            ],
+                    'taxonomy' => 'tag-publikacji',
+                    'field' => 'slug',
+                    'terms' => $_GET['tag'] ?? '', // Zabezpiecz przed ostrzeżeniem PHP, jeśli 'tag' nie jest ustawiony
+                ]
+            ]
         ];
+        
+        $the_query = new \WP_Query($args);
+        $terms = get_terms([
+            'taxonomy' => 'tag-publikacji',
+            'hide_empty' => false,
+        ]);
 
-        return new \WP_Query($args);
+        return [
+            'the_query' => $the_query,
+            'terms' => $terms,
+        ];
     }
 }
