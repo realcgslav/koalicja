@@ -146,7 +146,7 @@ add_action('rest_api_init', function () {
     register_rest_route('koalicja/v1', '/publikacje', [
         'methods' => 'GET',
         'callback' => function ($request) {
-            $tag = $request->get_param('tag');
+            $tags = $request->get_param('tags');
             $search = $request->get_param('search');
             $args = [
                 'post_type' => 'publikacja',
@@ -154,24 +154,17 @@ add_action('rest_api_init', function () {
                 's' => $search,
             ];
  // Dodajemy zapytanie dla 'tax_query' tylko jeśli '$tag' nie jest puste
- if (!empty($tag)) {
+ if (!empty($tags)) {
     $args['tax_query'] = [
         [
             'taxonomy' => 'tag-publikacji',
             'field' => 'slug',
-            'terms' => $tag,
+            'terms' => explode(',', $tags), // Przyjmujemy tagi jako string rozdzielony przecinkami
+            'operator' => 'IN', // Szukamy postów zawierających dowolny z tagów
         ],
     ];
 }
-            if ($tag) {
-                $args['tax_query'] = [
-                    [
-                        'taxonomy' => 'tag-publikacji',
-                        'field' => 'slug',
-                        'terms' => $tag,
-                    ],
-                ];
-            }
+       
 
             $query = new \WP_Query($args);
             return new \WP_REST_Response($query->posts, 200);
