@@ -1,0 +1,51 @@
+// Resetowanie marginesów i paddingów
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Ustawienia domyślne dla body
+body {
+  font-family: $font-primary; // Zmienna zdefiniowana w pliku variables.scss
+  font-size: $font-size-base; // Zmienna zdefiniowana w pliku variables.scss
+  line-height: 1.6;
+  color: $color-dark; // Zmienna zdefiniowana w pliku variables.scss
+  background-color: $color-light; // Zmienna zdefiniowana w pliku variables.scss
+}
+
+// Ustawienia dla linków
+a {
+  color: $link-color; // Zmienna zdefiniowana w pliku variables.scss
+  text-decoration: $link-decoration; // Zmienna zdefiniowana w pliku variables.scss
+
+  &:hover {
+    color: $link-hover-color; // Zmienna zdefiniowana w pliku variables.scss
+    text-decoration: $link-hover-decoration; // Zmienna zdefiniowana w pliku variables.scss
+  }
+}
+
+// Obrazy
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Listy
+ul,
+ol {
+  padding-left: 20px;
+}
+
+// Nagłówki
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $margin-base; // Zmienna zdefiniowana w pliku variables.scss
+  font-weight: $font-weight-bold; // Zmienna zdefiniowana w pliku variables.scss
+}
+
+// Paragrafy
+p {
+  margin-bottom: $margin-base; // Zmienna zdefiniowana w pliku variables.scss
+}
