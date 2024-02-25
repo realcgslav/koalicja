@@ -10,14 +10,7 @@ domReady(async () => {
   const nav = document.querySelector('.nav');
 
   hamburger.addEventListener('click', function () {
-    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-  });
-
-  // Usuwanie inline styles przy zmianie rozmiaru okna
-  window.addEventListener('resize', function () {
-    if (window.innerWidth >= 768) {
-      nav.removeAttribute('style');
-    }
+    nav.classList.toggle('nav-mobile-visible');
   });
   // ...
 });

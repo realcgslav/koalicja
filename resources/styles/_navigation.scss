@@ -1,63 +1,69 @@
 .nav-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f5f5f5; // Tło dla kontenera menu
   width: 100%;
+  background-color: #f5f5f5; // Tło kontenera menu
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .nav {
-    width: 100%;
-    display: none; // Ukryj menu na małych ekranach
-    flex-direction: column;
-    align-items: center;
-    padding-left: 0;
     list-style: none;
-    background-color: #333; // Tło dla menu
+    padding-left: 0;
     margin: 0;
+    display: none; // Domyślnie ukryte na małych ekranach
+    flex-direction: column;
+    width: 100%;
+    background-color: #333; // Tło menu
+    align-items: flex-start;
+
+    @media (min-width: 768px) {
+      display: flex !important; // Pokaż menu na większych ekranach
+      flex-direction: row;
+      justify-content: flex-end; // Wyrównaj menu do prawej strony
+    }
 
     .nav-item {
       width: 100%;
       text-align: center;
-      margin: 0.5rem 0;
       a {
         display: block;
-        padding: 10px 0;
-        color: #fff; // Kolor tekstu w linku
+        padding: 10px 20px;
+        color: #fff; // Kolor tekstu
         text-decoration: none;
         &:hover {
-          background-color: #555; // Tło linku po najechaniu
+          background-color: #555; // Tło linku przy najechaniu
         }
       }
 
       &.active a {
         background-color: #007bff; // Tło aktywnego linku
       }
+
+      @media (min-width: 768px) {
+        width: auto;
+        text-align: right;
+      }
     }
   }
 
   .hamburger {
-    display: flex; // Pokaż przycisk hamburger na małych ekranach
+    display: flex; // Domyślnie pokazany na małych ekranach
     cursor: pointer;
     padding: 10px;
-    background-color: #333; // Tło dla przycisku hamburger
-    color: #fff; // Kolor ikony hamburger
+    background-color: #333; // Tło przycisku
+    color: #fff;
     border: none;
-    margin: 10px 0;
+    margin-right: 10px;
 
     &:hover {
       background-color: #555;
     }
-  }
 
-  @media (min-width: 768px) {
-    .nav {
-      flex-direction: row;
-      justify-content: center;
-      display: flex; // Pokaż menu na większych ekranach
-    }
-
-    .hamburger {
+    @media (min-width: 768px) {
       display: none; // Ukryj przycisk hamburger na większych ekranach
     }
   }
+}
+
+.nav-mobile-visible {
+  display: flex !important;
 }

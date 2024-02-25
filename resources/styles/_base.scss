@@ -16,6 +16,10 @@ body {
   background-color: $color-light; // Zmienna zdefiniowana w pliku variables.scss
 }
 
+.sr-only {
+    display: none;
+}
+
 // Ustawienia dla linków
 a {
   color: $link-color; // Zmienna zdefiniowana w pliku variables.scss
