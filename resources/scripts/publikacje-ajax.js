@@ -26,13 +26,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     data.forEach(function(publikacja) {
                         const div = document.createElement('div');
                         div.className = 'publikacja';
-                        div.innerHTML = `<h2>${publikacja.post_title}</h2><p>${publikacja.post_content ? publikacja.post_content : ''}</p>`;
+                        div.innerHTML = `<h2>${publikacja.title}</h2>
+                                         <p>${publikacja.opis ? publikacja.opis : ''}</p>
+                                         <img src="${publikacja.okladka ? publikacja.okladka : ''}" alt="Okładka">
+                                         <a href="${publikacja.pdf ? publikacja.pdf : '#'}">Pobierz PDF</a>`;
                         publicationsContainer.appendChild(div);
                     });
                 } else {
                     publicationsContainer.innerHTML = '<p>No publications found.</p>';
                 }
             },
+            
             error: function(error) {
                 console.error('Error:', error);
                 publicationsContainer.innerHTML = '<p>There was an error.</p>';
