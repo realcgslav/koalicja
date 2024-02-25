@@ -137,49 +137,49 @@ add_action('widgets_init', function () {
     ] + $config);
 });
 
-// Register the 'tag-publikacja' taxonomy for 'publikacja' post type.
-add_action('init', function () {
-    register_taxonomy('tag-publikacja', 'publikacja', [
-        'label' => __('Tag Publikacja', 'sage'),
-        'rewrite' => ['slug' => 'tag-publikacja'],
-        'hierarchical' => true,
-    ]);
-});
-
-// Register a REST API endpoint for 'publikacja'.
 add_action('rest_api_init', function () {
-    register_rest_route('sage/v1', '/publikacja', [
+    register_rest_route('koalicja/v1', '/publikacje', array(
         'methods' => 'GET',
-        'callback' => 'App\\rest_api_get_publikacje',
-        'permission_callback' => '__return_true',
-    ]);
+        'callback' => 'get_filtered_publikacje',
+    ));
 });
 
-function rest_api_get_publikacje(WP_REST_Request $request) {
+function get_filtered_publikacje($request) {
+    $tags = $request->get_param('tags');
+    
+    // Logika pobierania publikacji na podstawie tagów
     $args = [
         'post_type' => 'publikacja',
-        'posts_per_page' => -1,
+        'posts_per_page' => -1, // Pobierz wszystkie pasujące publikacje
+        'tax_query' => [
+            [
+                'taxonomy' => 'tag-publikacji',
+                'field'    => 'slug',
+                'terms'    => explode(',', $tags), // Wielokrotne tagi przekazywane jako string rozdzielony przecinkami
+                'operator' => 'IN', // Wybiera posty, które mają dowolny z podanych tagów
+            ],
+        ],
     ];
 
-    $query = new \WP_Query($args);
+    $query = new WP_Query($args);
     $posts = [];
 
-    foreach ($query->posts as $post) {
-        // Fetch taxonomy terms for the post
-        $taxonomies = wp_get_post_terms($post->ID, 'tag-publikacja', ['fields' => 'all']);
-
-        $taxonomies_formatted = array_map(function($term) {
-            return [
-                'name' => $term->name,
-                'slug' => $term->slug,
+    // Przetworzenie zapytania
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $id = get_the_ID();
+            
+            $posts[] = [
+                'id' => $id,
+                'title' => get_the_title(),
+                'link' => get_the_permalink(),
+                'opis' => get_field('opis', $id), // Zakładając, że 'opis' to custom field
+                'okladka' => get_field('okladka', $id), // Zakładając, że 'okladka' to custom field zwracający URL obrazka
+                'pdf' => get_field('pdf', $id), // Zakładając, że 'pdf' to custom field zwracający URL pliku PDF
             ];
-        }, $taxonomies);
-
-        $posts[] = [
-            'title' => get_the_title($post->ID),
-            'description' => get_field('description', $post->ID), // Assuming ACF is being used
-            'taxonomies' => $taxonomies_formatted,
-        ];
+        }
+        wp_reset_postdata();
     }
 
     return new WP_REST_Response($posts, 200);

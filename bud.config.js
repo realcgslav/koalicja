@@ -16,7 +16,6 @@ export default async (app) => {
   app
     .entry('app', ['@scripts/app', '@styles/app'])
     .entry('editor', ['@scripts/editor', '@styles/editor'])
-    .entry('vue-publikacje', '@scripts/vue-publikacje')
     .assets(['images']);
 
   /**
