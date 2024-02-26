@@ -193,8 +193,10 @@ add_action('wp_enqueue_scripts', function () {
     ]);
 });
 
-function custom_theme_setup() {
+add_action('after_setup_theme', function () {
     // Dodaj własny rozmiar obrazka (nazwa, szerokość, wysokość, crop)
     add_image_size('news-thumbnail', 300, 300, true);
-}
-add_action('after_setup_theme', 'custom_theme_setup');
+
+    // Reszta kodu setup.php...
+});
+
