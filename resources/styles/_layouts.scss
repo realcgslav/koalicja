@@ -1,0 +1,38 @@
+// Grid Base
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  
+  // Flexbox Base
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  // Header Layout
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  // Main Content Layout
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  // Footer Layout
+  .footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }

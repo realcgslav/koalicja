@@ -1,4 +1,4 @@
-<section class="publikacje">
+<div class="publikacje container">
     <h2>Publikacje</h2>
     <div class="publikacje-wrapper">
         @foreach($publikacje as $post)
@@ -14,4 +14,4 @@
             </article>
         @endforeach
     </div>
-</section>
+</div>

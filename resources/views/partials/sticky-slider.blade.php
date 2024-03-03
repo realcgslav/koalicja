@@ -1,5 +1,4 @@
 @if(!empty($sticky_posts))
-  <!-- Swiper -->
   <div class="swiper-container sticky-posts-swiper">
     <div class="swiper-wrapper">
       @foreach($sticky_posts as $post)
