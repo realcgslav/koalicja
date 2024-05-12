@@ -1,5 +1,4 @@
 // Slider front
-
 .post-slide {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -9,5 +8,6 @@
     overflow: hidden;
 }
 .swiper-container {
+    width: 100%;
     overflow: hidden;
 }

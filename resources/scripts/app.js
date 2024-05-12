@@ -1,5 +1,5 @@
 import domReady from '@roots/sage/client/dom-ready';
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
 
 domReady(async () => {
 
@@ -11,16 +11,16 @@ domReady(async () => {
   });
   
   // Inicjalizacja Swipera
-  const swiper = new Swiper('.swiper-container', {
+  const swiper = new Swiper('.swiper', {
     // Parametry Swipera
+    modules: [Navigation, Pagination],
     loop: true,
     pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
+      el: ".swiper-pagination", 
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
   });
 });
