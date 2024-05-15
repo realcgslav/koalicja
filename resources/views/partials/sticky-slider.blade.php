@@ -10,6 +10,7 @@
                               <img src="{{ get_the_post_thumbnail_url($post->ID) }}" alt="{!! get_the_title($post->ID) !!}">
                           @endif
                       </div>
+                      <div class="circle"></div>
                       <div class="post-content">
                           <h2>{!! get_the_title($post->ID) !!}</h2>
                           <div>{!! get_the_excerpt($post->ID) !!}</div>

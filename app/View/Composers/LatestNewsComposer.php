@@ -20,14 +20,20 @@ class LatestNewsComposer extends Composer
     {
         $args = [
             'post_type' => 'post',
-            'posts_per_page' => 3,
+            'posts_per_page' => 6,
             'order' => 'DESC',
             'orderby' => 'date',
             'post__not_in' => get_option('sticky_posts'),
         ];
 
         $query = new WP_Query($args);
-        
-        return $query->posts;
+        return array_map(function ($post) {
+            return (object) [
+                'ID' => $post->ID,
+                'post_title' => get_the_title($post->ID),
+                'post_thumbnail_url' => get_the_post_thumbnail_url($post->ID, 'news-thumbnail'),
+                'permalink' => get_permalink($post->ID),
+            ];
+        }, $query->posts);
     }
 }

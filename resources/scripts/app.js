@@ -12,12 +12,22 @@ domReady(async () => {
 
   //glide
   new Glide('.glide', {
-    type: 'carousel',
+    type: 'swiper',
     perView: 1,
     focusAt: 'center',
     gap: 0,
 }).mount();
 
+//clamp titles
+const titles = document.querySelectorAll('.clamp-title');
+        const maxLength = 70; // Maksymalna liczba znaków
+
+        titles.forEach(title => {
+            if (title.textContent.length > maxLength) {
+                title.textContent = title.textContent.slice(0, maxLength) + '...';
+            }
+        });
+//end clamp titles
 });
 
 if (import.meta.webpackHot) import.meta.webpackHot.accept(console.error);

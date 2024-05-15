@@ -1,15 +1,15 @@
 // Slider front
 .post-slide {
     display: grid;
-    grid-template-rows: 1fr min-content;
-    gap: 20px;
-    padding: 20px;
+    grid-template-rows: 1fr max-content;
+    grid-template-columns: 1fr;
     width: 100%;
-    height: 100%;
-    min-height: 680px;
+    min-height: 850px;
     align-content: space-between;
+    position: relative;
 
     .post-image {
+        z-index: 0;
         img {
             max-width: 100%;
             height: 100%;
@@ -17,8 +17,70 @@
         }
     }
 
+    .circle {
+        position: absolute;
+        margin-top: 350px;
+        left: 50%;
+        width: 200%;
+        height: 0;
+        padding-bottom: 100%;
+        background-color: $color-koalicja-orange;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
+
+        @include respond-to(sm) {
+            
+        }
+
+        @include respond-to(md) {
+            width: 300%;
+            height: 300%;
+            top: 50%;
+            left: 40%;
+            transform: translateY(-50%);
+            clip-path: none;
+            margin-top: auto;
+        }
+        @include respond-to(lg) {
+            width: 700%;
+            height: 700%;
+            left: 55%;
+ 
+        }
+    }
+
+    .post-content {
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        background-color: $color-koalicja-orange;
+        padding: 25px;
+        position: relative;
+        z-index: 1;
+
+        h2 {
+            text-transform: uppercase;
+            font-size: 1rem;
+
+            @include respond-to(md) {
+                font-size: 1.2rem;
+            }
+        }
+
+        a {
+            @include button-white;
+        }
+    }
+
     @include respond-to(md) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
+        min-height: 500px;
+    }
+
+    @include respond-to(lg) {
+        grid-template-columns: 3fr 2fr;
+        min-height: 650px;
     }
 }
 

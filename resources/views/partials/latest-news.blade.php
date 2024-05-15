@@ -1,9 +1,15 @@
 @if ($latestNews)
-  <div class="news-container container">
-    @foreach ($latestNews as $newsItem)
-      <div class="news-item" style="background-image: url('{{ get_the_post_thumbnail_url($newsItem->ID, 'news-thumbnail') }}')">
-        <div class="news-title">{{ $newsItem->post_title }}</div>
+<h2 class="section-name">Aktualności</h2>
+<div class="news-container container">
+  @foreach ($latestNews as $newsItem)
+  <a href="{{ $newsItem->permalink }}">
+      <div class="news-item" style="background-image: url('{{ $newsItem->post_thumbnail_url }}')">
+          <div class="news-title">
+                  <h3 class="clamp-title">{{ $newsItem->post_title }}</h3>
+          </div>
       </div>
-    @endforeach
-  </div>
+    </a>
+  @endforeach
+</div>
+<a href="#" class="section-next">Więcej aktualności</a>
 @endif
