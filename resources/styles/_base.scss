@@ -7,12 +7,23 @@
   box-sizing: border-box;
 }
 
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 300 to 900
+
+.rubik-cube {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+
 // Ustawienia domyślne dla body
 body {
   font-family: $font-primary; // Zmienna zdefiniowana w pliku variables.scss
   font-size: $font-size-base; // Zmienna zdefiniowana w pliku variables.scss
   line-height: 1.6;
-  color: $color-dark; // Zmienna zdefiniowana w pliku variables.scss
+  color: $color-koalicja-brown; // Zmienna zdefiniowana w pliku variables.scss
   background-color: $color-light; // Zmienna zdefiniowana w pliku variables.scss
 }
 

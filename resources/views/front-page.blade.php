@@ -3,5 +3,5 @@
     @include('partials.sticky-slider')
     @include('partials.latest-news')
     @include('partials.publikacje')
-    @include('sections.footer')
+    @include('partials.orgs-slider')
 @endsection
