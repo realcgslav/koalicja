@@ -81,3 +81,4 @@ collect(['setup', 'filters'])
     
         echo paginate_links($args);
     }
+    

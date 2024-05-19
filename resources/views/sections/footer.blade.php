@@ -25,7 +25,7 @@
           </ul>
       </div>
       <div class="footer-logo">
-          <img src="path/to/your/logo.png" alt="Koalicja Żywa Ziemia">
+        <img src="{{ \Roots\asset('images/kzz_logo_wektor_fw.svg')->uri() }}" alt="Logo KŻZ białe">
           <p>© 2024 Koalicja Żywa Ziemia</p>
       </div>
   </div>

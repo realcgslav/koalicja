@@ -6,20 +6,10 @@ use Roots\Acorn\View\Composer;
 
 class PublikacjeDisplayComposer extends Composer
 {
-    /**
-     * List of views served by this composer.
-     *
-     * @var array
-     */
     protected static $views = [
         'template-publikacje',
     ];
 
-    /**
-     * Data to be passed to view before rendering.
-     *
-     * @return array
-     */
     public function with()
     {
         return [
@@ -28,24 +18,33 @@ class PublikacjeDisplayComposer extends Composer
         ];
     }
 
-    /**
-     * Returns all 'publikacja' custom post types.
-     *
-     * @return \WP_Query
-     */
     protected function publikacje()
     {
-        return new \WP_Query([
+        $args = [
             'post_type' => 'publikacja',
             'posts_per_page' => -1,
-        ]);
+        ];
+
+        $query = new \WP_Query($args);
+        $posts = [];
+
+        if ($query->have_posts()) : 
+            while ($query->have_posts()) : $query->the_post();
+                $id = get_the_ID();
+                $posts[] = [
+                    'title' => get_the_title(),
+                    'opis' => get_field('opis', $id),
+                    'okladka' => get_field('okladka', $id),
+                    'pdf' => get_field('pdf', $id),
+                    'link' => get_permalink($id), // Ensure link is included
+                ];
+            endwhile;
+            wp_reset_postdata();
+        endif;
+
+        return $posts;
     }
 
-    /**
-     * Returns all 'tag-publikacji' terms.
-     *
-     * @return array
-     */
     protected function tags()
     {
         return get_terms([

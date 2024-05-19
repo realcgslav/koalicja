@@ -22,9 +22,9 @@
 body {
   font-family: $font-primary; // Zmienna zdefiniowana w pliku variables.scss
   font-size: $font-size-base; // Zmienna zdefiniowana w pliku variables.scss
-  line-height: 1.6;
+  line-height: 1.8;
   color: $color-koalicja-brown; // Zmienna zdefiniowana w pliku variables.scss
-  background-color: $color-light; // Zmienna zdefiniowana w pliku variables.scss
+  background-color: white; // Zmienna zdefiniowana w pliku variables.scss
 }
 
 .sr-only {
@@ -33,12 +33,12 @@ body {
 
 // Ustawienia dla linków
 a {
-  color: $link-color; // Zmienna zdefiniowana w pliku variables.scss
+  color: $color-koalicja-orange; // Zmienna zdefiniowana w pliku variables.scss
   text-decoration: $link-decoration; // Zmienna zdefiniowana w pliku variables.scss
   transition: color ease 300ms;
 
   &:hover {
-    color: $link-hover-color; // Zmienna zdefiniowana w pliku variables.scss
+    color: darken($color-koalicja-orange, 30%); // Zmienna zdefiniowana w pliku variables.scss
     text-decoration: $link-hover-decoration; // Zmienna zdefiniowana w pliku variables.scss
     transition: color ease 100ms;
   }

@@ -175,6 +175,7 @@ add_action('rest_api_init', function () {
                         'opis' => get_field('opis', $id),
                         'okladka' => get_field('okladka', $id) ? get_field('okladka', $id)['url'] : '', // Zakładając, że pole 'okladka' jest obrazem
                         'pdf' => get_field('pdf', $id) ? get_field('pdf', $id)['url'] : '', // Zakładając, że pole 'pdf' jest plikiem
+                        'link' => get_permalink($id),
                     ];
                 endwhile;
                 wp_reset_postdata();
