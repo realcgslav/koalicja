@@ -6,6 +6,7 @@
       <div class="news-item" style="background-image: url('{{ $newsItem->post_thumbnail_url }}')">
           <div class="news-title">
                   <h3 class="clamp-title">{{ $newsItem->post_title }}</h3>
+                   @include('partials.entry-meta', ['post' => $newsItem])
           </div>
       </div>
     </a>

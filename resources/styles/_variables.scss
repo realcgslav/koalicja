@@ -31,6 +31,8 @@ $color-dark: #343a40;
 $color-koalicja-orange: #ffbe32;
 $color-koalicja-brown: #493c3a;
 
+$colors-news: #ff5733, #33ff57, #3357ff, #ff33a1, #a133ff;
+
 // Media queries
 $breakpoint-xs: 0;
 $breakpoint-sm: 576px;
@@ -55,8 +57,8 @@ $breakpoint-xl: 1200px;
 // Links and buttons
 $link-color: $color-primary;
 $link-decoration: none;
-$link-hover-color: darken($color-primary, 15%);
-$link-hover-decoration: underline;
+$link-hover-color: white;
+$link-hover-decoration: none;
 
 $button-font-weight: $font-weight-bold;
 $button-padding: 0.375rem 0.75rem;
@@ -83,6 +85,9 @@ $padding-large: $spacing-unit * 2;
   border-radius: 25px;
   margin: 15px 0;
   color: black;
+  &:hover {
+    color: $color-koalicja-orange;
+  }
 }
 
 @mixin button-orange {
@@ -94,4 +99,7 @@ $padding-large: $spacing-unit * 2;
   border-radius: 35px;
   margin: 15px 0;
   color: black;
+  &:hover {
+    color: white;
+  }
 }

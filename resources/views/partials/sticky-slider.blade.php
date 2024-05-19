@@ -12,6 +12,7 @@
                       </div>
                       <div class="circle"></div>
                       <div class="post-content">
+                            @include('partials/entry-meta')
                           <h2>{!! get_the_title($post->ID) !!}</h2>
                           <div>{!! get_the_excerpt($post->ID) !!}</div>
                           <a href="{{ get_permalink($post->ID) }}">Czytaj więcej</a>
