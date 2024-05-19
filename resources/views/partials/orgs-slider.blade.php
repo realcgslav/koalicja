@@ -5,8 +5,9 @@
         $logos = array();
         while ( have_rows('organizacje-czlonkowskie') ) : the_row();
             $logo = get_sub_field('organizacje-czlonkowskie-logo');
+            $link = get_sub_field('link');
             if( $logo ):
-                $logos[] = $logo;
+            $logos[] = array('logo' => $logo, 'link' => $link);
             endif;
         endwhile;
         
@@ -14,9 +15,15 @@
         shuffle($logos);
         
         echo '<div class="organizacje-czlonkowskie">';
-        foreach ($logos as $logo) {
+        foreach ($logos as $item) {
             echo '<div class="org-logo">';
-            echo '<img src="' . esc_url($logo['url']) . '" alt="' . esc_attr($logo['alt']) . '" />';
+            if ($item['link']) {
+                echo '<a href="' . esc_url($item['link']) . '">';
+            }
+            echo '<img src="' . esc_url($item['logo']['url']) . '" alt="' . esc_attr($item['logo']['alt']) . '" />';
+            if ($item['link']) {
+                echo '</a>';
+            }
             echo '</div>';
         }
         echo '</div>';

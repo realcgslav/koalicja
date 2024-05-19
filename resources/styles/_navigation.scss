@@ -106,6 +106,7 @@ $color-koalicja-orange: #FFA500; // Assuming this is the color you want for the 
     margin-top: -25px;
     right: -25px;
     width: 100vw;
+    opacity: 0;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.979);
     z-index: 999;
@@ -173,10 +174,38 @@ $color-koalicja-orange: #FFA500; // Assuming this is the color you want for the 
 
     &.is-active {
       transform: translateX(0);
+      opacity: 1;
     }
   }
 }
 
 .has-active-nav {
   overflow: hidden;
+}
+
+//nav bottom pagination
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.pagination .page-numbers {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 8px 16px;
+  margin: 0 4px;
+  text-decoration: none;
+  color: $color-koalicja-brown;
+  &:hover {
+    color: $color-koalicja-orange;
+  }
+}
+
+.page-numbers.current {
+  border: 2px solid $color-koalicja-orange;
+  border-radius: 50px;
 }

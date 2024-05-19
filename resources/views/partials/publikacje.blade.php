@@ -5,14 +5,14 @@
         @foreach($publikacje as $post)
             <article class="publikacja">
                 @if($post['okladka'])
-                    <img src="{{ $post['okladka']['url'] }}" alt="{{ $post['title'] }}">
+                <a class="publikacja-link" href="{{ $post['link'] }}"><img src="{{ $post['okladka']['url'] }}" alt="{{ $post['title'] }}"></a>
                 @endif
                 @if($post['pdf'])
-                    <a href="{{ $post['pdf']['url'] }}" target="_blank">Pobierz</a>
+                    <a class="publikacja-pdf" href="{{ $post['pdf']['url'] }}" target="_blank">Pobierz</a>
                 @endif
             </article>
         @endforeach
     </div>
 </div>
-<a href="#" class="section-next">Więcej publikacji</a>
+<a href="/publikacje" class="section-next">Więcej publikacji</a>
 </div>

@@ -5,7 +5,7 @@
             <article class="publikacja">
                 <h3>{{ $post['title'] }}</h3>
                 @if($post['okladka'])
-                    <img src="{{ $post['okladka']['url'] }}" alt="{{ $post['title'] }}">
+                <a href="{{ get_permalink($post->ID) }}"><img src="{{ $post['okladka']['url'] }}" alt="{{ $post['title'] }}"></a>  
                 @endif
                 <p>{{ $post['opis'] }}</p>
                 @if($post['pdf'])

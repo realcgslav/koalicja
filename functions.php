@@ -63,3 +63,21 @@ collect(['setup', 'filters'])
             );
         }
     });
+
+    function sage_numeric_pagination() {
+        global $wp_query;
+    
+        $big = 999999999; // need an unlikely integer
+    
+        $args = array(
+            'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+            'format'    => '?paged=%#%',
+            'current'   => max(1, get_query_var('paged')),
+            'total'     => $wp_query->max_num_pages,
+            'prev_text' => __('« Poprzednia', 'sage'),
+            'next_text' => __('Następna »', 'sage'),
+            'type'      => 'list',
+        );
+    
+        echo paginate_links($args);
+    }

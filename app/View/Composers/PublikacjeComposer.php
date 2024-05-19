@@ -42,6 +42,7 @@ class PublikacjeComposer extends Composer
                     'opis' => get_field('opis', $id),
                     'okladka' => get_field('okladka', $id),
                     'pdf' => get_field('pdf', $id),
+                    'link' => get_permalink($id),
                 ];
             endwhile;
             wp_reset_postdata();
