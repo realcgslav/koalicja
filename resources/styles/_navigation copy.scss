@@ -1,0 +1,89 @@
+.nav-container {
+  width: 100%;
+  background-color: #493c3a; // Tło kontenera menu
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  .logo {
+    a {
+      display: flex;
+      align-items: center;
+
+      img {
+        max-height: 40px;
+        width: auto;
+      }
+    }
+  }
+
+  .nav {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: none; // Domyślnie ukryte na małych ekranach
+    flex-direction: column;
+    width: 100%;
+    background-color: #493c3a; // Tło menu
+    align-items: flex-start;
+
+    @include respond-to(md) {
+      display: flex !important; // Pokaż menu na większych ekranach
+      flex-direction: row;
+      justify-content: flex-end; // Wyrównaj menu do prawej strony
+      width: auto;
+    }
+
+    .nav-item {
+      width: 100%;
+      text-align: center;
+      
+      a {
+        display: block;
+        padding: 10px 20px;
+        color: #fff; // Kolor tekstu
+        text-decoration: none;
+        transition: background-color 0.3s;
+        border-radius: 50px;
+
+        &:hover {
+          background-color: $color-koalicja-orange; // Tło linku przy najechaniu
+          border-radius: 50px;
+        }
+      }
+
+      &.active a {
+        background-color: #007bff; // Tło aktywnego linku
+      }
+
+      @include respond-to(md) {
+        width: auto;
+        text-align: right;
+      }
+    }
+  }
+
+  .hamburger {
+    display: flex; // Domyślnie pokazany na małych ekranach
+    cursor: pointer;
+    padding: 10px;
+    background-color: #493c3a; // Tło przycisku
+    color: #fff;
+    border: none;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #555;
+    }
+
+    @include respond-to(md) {
+      display: none; // Ukryj przycisk hamburger na większych ekranach
+    }
+  }
+}
+
+.nav-mobile-visible {
+  display: flex !important;
+}

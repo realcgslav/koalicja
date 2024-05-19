@@ -5,14 +5,22 @@ domReady(async () => {
 
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('.nav');
+  const body = document.body;
 
-  hamburger.addEventListener('click', function () {
-    nav.classList.toggle('nav-mobile-visible');
-  });
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('is-active');
+      nav.classList.toggle('is-active');
+      body.classList.toggle('has-active-nav');
+    });
+  } else {
+    console.error('Hamburger or navigation element not found.');
+  }
 
   //glide
   new Glide('.glide', {
-    type: 'swiper',
+    type: 'carousel',
+    autoplay: 3000,
     perView: 1,
     focusAt: 'center',
     gap: 0,

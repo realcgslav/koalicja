@@ -22,10 +22,11 @@
       </ul>
   </div>
   <!-- Add Controls -->
-  <div class="glide__arrows" data-glide-el="controls">
-      <div class="glide__arrow glide__arrow--left" data-glide-dir="<"><?xml version="1.0" encoding="UTF-8"?><svg width="50px" height="50px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 6L9 12L15 18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-      <div class="glide__arrow glide__arrow--right" data-glide-dir=">"><?xml version="1.0" encoding="UTF-8"?><svg width="50px" height="50px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6L15 12L9 18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
-  </div>
   <!-- Add Bullets -->
+  <div class="glide__bullets" data-glide-el="controls[nav]">
+    <button class="glide__bullet" data-glide-dir="=0"></button>
+    <button class="glide__bullet" data-glide-dir="=1"></button>
+    <button class="glide__bullet" data-glide-dir="=2"></button>
+  </div>
 </div>
 @endif

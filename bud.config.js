@@ -34,7 +34,7 @@ export default async (app) => {
    * @see {@link https://bud.js.org/docs/bud.watch}
    */
   app
-    .setUrl('http://localhost:3000')
+    .setUrl('http://localhost:3001')
     .setProxyUrl('http://koalicja.test')
     .watch(['resources/views', 'app']);
 

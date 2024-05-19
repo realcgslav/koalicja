@@ -1,87 +1,182 @@
-.nav-container {
-  width: 100%;
-  background-color: #493c3a; // Tło kontenera menu
+// Variables
+$background-color: #fff;
+$overlay-background: rgba(255, 255, 255, 0.9);
+$blur-amount: 10px;
+$transition-duration: 0.3s;
+$hamburger-color: #333;
+$color-koalicja-orange: #FFA500; // Assuming this is the color you want for the orange stroke
+
+// Mixin for flex center
+@mixin flex-center {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-wrapper {
+  position: absolute;
+  z-index: 1001;
+  margin: 50px;
+  width: 100px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30px; /* Extend beyond the top edge */
+    left: -30px; /* Extend beyond the left edge */
+    right: -30px; /* Extend beyond the right edge */
+    bottom: -30px; /* Extend beyond the bottom edge */
+    background: #ffffffe8; /* Semi-transparent white */
+    z-index: -1; /* Place behind the container content */
+    filter: blur(30px); /* Apply blur to the pseudo-element itself */
+  }
+}
+
+.logo {
+  display: block;
+  position: relative; /* Change to relative */
+  z-index: 1002; /* Ensure it is above the blur */
+  width: 100%; /* Adjust to fit the wrapper */
+  height: auto;
+}
+
+.nav-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 25px;
+  width: max-content;
+  background-color: rgba(255, 255, 255, 0.815);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
   padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
 
-  .logo {
-    a {
-      display: flex;
-      align-items: center;
+  .nav-buttons {
+    display: flex;
+    flex-flow: row;
+    gap: 25px;
 
-      img {
-        max-height: 40px;
-        width: auto;
-      }
-    }
-  }
+    button {
+      background: none;
+      border: none;
+      z-index: 1001;
+      cursor: pointer;
+      line-height: 1;
+      display: block;
 
-  .nav {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-    display: none; // Domyślnie ukryte na małych ekranach
-    flex-direction: column;
-    width: 100%;
-    background-color: #493c3a; // Tło menu
-    align-items: flex-start;
-
-    @include respond-to(md) {
-      display: flex !important; // Pokaż menu na większych ekranach
-      flex-direction: row;
-      justify-content: flex-end; // Wyrównaj menu do prawej strony
-      width: auto;
-    }
-
-    .nav-item {
-      width: 100%;
-      text-align: center;
-      
-      a {
-        display: block;
-        padding: 10px 20px;
-        color: #fff; // Kolor tekstu
-        text-decoration: none;
-        transition: background-color 0.3s;
-
-        &:hover {
-          background-color: #555; // Tło linku przy najechaniu
+      svg {
+        path {
+          stroke: $color-koalicja-orange;
+          stroke-width: 3;
         }
-      }
-
-      &.active a {
-        background-color: #007bff; // Tło aktywnego linku
-      }
-
-      @include respond-to(md) {
-        width: auto;
-        text-align: right;
       }
     }
   }
 
   .hamburger {
-    display: flex; // Domyślnie pokazany na małych ekranach
+    display: flex;
     cursor: pointer;
-    padding: 10px;
-    background-color: #493c3a; // Tło przycisku
-    color: #fff;
+    font-size: 24px;
+    background: none;
     border: none;
-    margin-right: 10px;
-    transition: background-color 0.3s;
+    z-index: 1001;
 
-    &:hover {
-      background-color: #555;
+    svg {
+      path {
+        stroke: $color-koalicja-orange;
+      }
+    }
+  }
+
+  .nav {
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    margin-top: -25px;
+    right: -25px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.979);
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform $transition-duration ease;
+
+    .nav-item {
+      margin: 20px 0;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+        color: $hamburger-color;
+        font-size: 1.5em;
+        transition: color $transition-duration ease;
+
+        &:hover {
+          color: darken($hamburger-color, 20%);
+        }
+      }
+
+      &.search-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .search-form {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .search-field {
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid $color-koalicja-orange;
+            border-radius: 50px;
+          }
+
+          .search-submit {
+            padding-left: 10px;
+            font-size: 1em;
+            background: none;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+            svg {
+              path {
+                stroke-width: 2;
+              }
+            }
+
+            &:hover {
+              svg {
+                path {
+                  stroke: $color-koalicja-orange
+                }
+              };
+            }
+          }
+        }
+      }
     }
 
-    @include respond-to(md) {
-      display: none; // Ukryj przycisk hamburger na większych ekranach
+    &.is-active {
+      transform: translateX(0);
     }
   }
 }
 
-.nav-mobile-visible {
-  display: flex !important;
+.has-active-nav {
+  overflow: hidden;
 }

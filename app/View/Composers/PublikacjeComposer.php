@@ -22,6 +22,13 @@ class PublikacjeComposer extends Composer
             'posts_per_page' => 4,
             'orderby' => 'date',
             'order' => 'DESC',
+            'meta_query' => [
+                [
+                    'key' => 'na_glownej',
+                    'value' => '1',
+                    'compare' => '=',
+                ]
+            ],
         ];
 
         $publikacje = new \WP_Query($args);
