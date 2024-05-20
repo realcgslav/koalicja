@@ -1,5 +1,5 @@
 {{--
-  Template Name: O nas
+  Template Name: Kontakt
 --}}
 
 @extends('layouts.app')

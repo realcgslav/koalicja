@@ -209,3 +209,13 @@ $color-koalicja-orange: #FFA500; // Assuming this is the color you want for the 
   border: 2px solid $color-koalicja-orange;
   border-radius: 50px;
 }
+
+.contact-menu {
+  display: flex;
+  gap: 30px;
+  svg {
+    path {
+      stroke: $color-koalicja-brown;
+    }
+  }
+}

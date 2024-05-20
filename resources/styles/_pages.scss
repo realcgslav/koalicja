@@ -53,12 +53,6 @@
       width: 300px;
     }
 
-    @for $i from 1 through length($colors-news) {
-      &:nth-of-type(#{$i}) {
-          background-color: nth($colors-news, $i);
-      }
-  }
-
     &:before {
         content: '';
         position: absolute;
@@ -70,7 +64,8 @@
         background-position: center;
         margin: -10px;
         z-index: 1;
-        opacity: 0.75;
+        background-color: #08805c;
+        opacity: 0.9;
         
     }
   
@@ -205,6 +200,14 @@
   .footer-column {
       flex: 1;
       width: 100%;
+
+      .contact-menu {
+        svg {
+          path {
+            stroke: white;
+          }
+        }
+      }
       
       .footer-title {
           font-size: 1.5rem;
@@ -325,27 +328,6 @@
         padding: 10px;
       }
       
-    }
-  }
-
-  figure {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    width: 100% !important;
-    text-align: center;
-    background-color: $color-koalicja-orange;
-    padding: 10px;
-    border-radius: 50px;
-    margin-bottom: $margin-base;
-
-    img {
-      border-radius: 50px;
-    }
-
-    figcaption {
-      margin-top: 10px;
-      width: 100%;
     }
   }
 }
@@ -481,6 +463,24 @@
       }
     }
   }
+}
 
-  
+//O nas
+
+.about-container {
+  display: flex;
+  flex-flow: column;
+
+  .section-name {
+    margin-top: 0;
+  }
+
+  .struktura {
+    margin-top: $margin-container;
+  }
+}
+
+.manifest {
+  padding-top: $margin-container;
+  padding-bottom: $margin-container;
 }

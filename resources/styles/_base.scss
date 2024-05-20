@@ -82,3 +82,24 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-bottom: $margin-base; // Zmienna zdefiniowana w pliku variables.scss
 }
+
+figure {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100% !important;
+  text-align: center;
+  background-color: $color-koalicja-orange;
+  padding: 10px;
+  border-radius: 50px;
+  margin-bottom: $margin-base;
+
+  img {
+    border-radius: 50px;
+  }
+
+  figcaption {
+    margin-top: 10px;
+    width: 100%;
+  }
+}

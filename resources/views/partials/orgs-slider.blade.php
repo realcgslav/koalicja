@@ -1,19 +1,22 @@
 <div class="full-color white">
     <h2 class="section-name">Organizacje członkowskie</h2>
     <?php
-    if( have_rows('organizacje-czlonkowskie') ):
+    // Pobierz ID strony głównej
+    $homepage_id = get_option('page_on_front');
+
+    if (have_rows('organizacje-czlonkowskie', $homepage_id)):
         $logos = array();
-        while ( have_rows('organizacje-czlonkowskie') ) : the_row();
-            $logo = get_sub_field('organizacje-czlonkowskie-logo');
-            $link = get_sub_field('link');
-            if( $logo ):
-            $logos[] = array('logo' => $logo, 'link' => $link);
+        while (have_rows('organizacje-czlonkowskie', $homepage_id)): the_row();
+            $logo = get_sub_field('organizacje-czlonkowskie-logo', $homepage_id);
+            $link = get_sub_field('link', $homepage_id);
+            if ($logo):
+                $logos[] = array('logo' => $logo, 'link' => $link);
             endif;
         endwhile;
-        
+
         // Losowe tasowanie obrazów
         shuffle($logos);
-        
+
         echo '<div class="organizacje-czlonkowskie">';
         foreach ($logos as $item) {
             echo '<div class="org-logo">';
@@ -27,7 +30,7 @@
             echo '</div>';
         }
         echo '</div>';
-    else :
+    else:
         echo '<p>Brak organizacji członkowskich do wyświetlenia.</p>';
     endif;
     ?>

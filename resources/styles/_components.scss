@@ -45,8 +45,7 @@
         @include respond-to(lg) {
             width: 700%;
             height: 700%;
-            left: 55%;
- 
+            left: 40%;
         }
     }
 
@@ -79,11 +78,10 @@
 
     @include respond-to(md) {
         grid-template-columns: 1fr 1fr;
-        min-height: 500px;
+        min-height: 650px;
     }
 
     @include respond-to(lg) {
-        grid-template-columns: 3fr 2fr;
         min-height: 650px;
     }
 }
