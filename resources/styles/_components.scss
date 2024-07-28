@@ -18,7 +18,10 @@
     }
 
     .circle {
-        position: absolute;
+       
+
+        @include respond-to(sm) {
+            position: absolute;
         margin-top: 350px;
         left: 50%;
         width: 200%;
@@ -28,9 +31,6 @@
         border-radius: 50%;
         transform: translateX(-50%);
         clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
-
-        @include respond-to(sm) {
-            
         }
 
         @include respond-to(md) {

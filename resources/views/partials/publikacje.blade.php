@@ -14,5 +14,5 @@
         @endforeach
     </div>
 </div>
-<a href="/publikacje" class="section-next">Więcej publikacji</a>
+<a href="#" class="section-next">Więcej publikacji</a>
 </div>

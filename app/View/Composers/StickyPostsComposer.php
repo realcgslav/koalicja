@@ -14,9 +14,9 @@ class StickyPostsComposer extends Composer
     {
         $sticky_posts = get_option('sticky_posts');
         $sticky_posts = get_posts([
-            'post__in' => $sticky_posts,
-            'ignore_sticky_posts' => 1,
-            'numberposts' => 3,
+            'posts_per_page' => 3,
+            'orderby' => 'date',
+            'order' => 'DESC',
         ]);
 
         return [

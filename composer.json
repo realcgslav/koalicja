@@ -41,7 +41,7 @@
   "require": {
     "php": "^8.0",
     "log1x/navi": "^2.0",
-    "roots/acorn": "^4.0.2",
+    "roots/acorn": "^5.0.0",
     "roots/acorn-prettify": "^1.0"
   },
   "require-dev": {
