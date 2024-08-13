@@ -14,13 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
         publicationsContainer.innerHTML = '';
 
         if (data.length) {
+            // Sort data by date (newest to oldest)
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
             data.forEach(function(publikacja) {
                 const div = document.createElement('div');
                 div.className = 'publikacja';
                 let publikacjaHTML = `<h2>${publikacja.title}</h2>`;
                 
                 if (publikacja.okladka) {
-                    const okladkaUrl = publikacja.okladka; // Adjusted to use the URL field correctly
+                    const okladkaUrl = publikacja.okladka;
                     if (publikacja.link) {
                         publikacjaHTML += `<a href="${publikacja.link}"><img src="${okladkaUrl}" alt="Okładka"></a>`;
                     } else {
@@ -29,9 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (publikacja.pdf) {
-                    const pdfUrl = publikacja.pdf; // Adjusted to use the URL field correctly
+                    const pdfUrl = publikacja.pdf;
                     publikacjaHTML += `<a class="publikacja-button" href="${pdfUrl}">Pobierz PDF</a>`;
                 }
+
+               
 
                 div.innerHTML = publikacjaHTML;
                 publicationsContainer.appendChild(div);

@@ -3,11 +3,10 @@
       <div class="footer-column">
           <h3 class="footer-title">Menu:</h3>
           <ul class="footer-list">
-              <li><a href="#">Aktualności</a></li>
-              <li><a href="#">O nas</a></li>
-              <li><a href="#">Nasze działania</a></li>
-              <li><a href="#">Publikacje</a></li>
-              <li><a href="#">Kontakt</a></li>
+              <li><a href="/aktualnosci/">Aktualności</a></li>
+              <li><a href="/o-nas/">O nas</a></li>
+              <li><a href="/category/dzialania-koalicji/">Działania Koalicji</a></li>
+              <li><a href="/publikacje/">Publikacje</a></li>
           </ul>
       </div>
       <div class="footer-column">
@@ -31,11 +30,8 @@
       <div class="footer-column">
           <h3 class="footer-title">Przydatne:</h3>
           <ul class="footer-list">
-              <li><a href="#">Polityka prywatności</a></li>
-              <li><a href="#">Regulamin</a></li>
-              <li><a href="#">Manifest Koalicji Żywa Ziemia</a></li>
-              <li><a href="#">Mapa strony</a></li>
-              <li><a href="#">Szukaj</a></li>
+              <li><a href="/polityka-prywatnosci/">Polityka prywatności</a></li>
+              <li><a href="/o-nas/">Manifest Koalicji Żywa Ziemia</a></li>
           </ul>
       </div>
       <div class="footer-logo">

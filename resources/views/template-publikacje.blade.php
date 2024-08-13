@@ -6,7 +6,9 @@
 
 @section('content')
 <div class="post-featured">
-    <img src="{{ \Roots\asset('images/books.jpg')->uri() }}" alt="Publikacje">
+    @if (has_post_thumbnail())
+    <img src="{{ get_the_post_thumbnail_url(null, 'full') }}" alt="{{ get_the_title() }}">
+@endif
   </div>
 <div class="publikacje-container container">
 <div id="publikacje">

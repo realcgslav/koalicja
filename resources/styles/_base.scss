@@ -80,6 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // Paragrafy
 p {
+  margin-top: $margin-base;
   margin-bottom: $margin-base; // Zmienna zdefiniowana w pliku variables.scss
 }
 

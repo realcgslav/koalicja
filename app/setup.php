@@ -19,6 +19,10 @@ use Roots\Acorn\Application;
  */
 add_action('wp_enqueue_scripts', function () {
     bundle('app')->enqueue();
+
+    if (is_front_page()) {
+        wp_enqueue_script('toggle-manifest', get_theme_file_uri('/resources/scripts/toggle-manifest.js'), [], null, true);
+    }
 }, 100);
 
 /**

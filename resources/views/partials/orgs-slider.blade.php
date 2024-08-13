@@ -34,5 +34,5 @@
         echo '<p>Brak organizacji członkowskich do wyświetlenia.</p>';
     endif;
     ?>
-    <a href="#" class="section-next">O nas</a>
+    <a href="/o-nas/" class="section-next">O nas</a>
 </div>

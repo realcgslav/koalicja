@@ -73,6 +73,14 @@
 
         a {
             @include button-white;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: $margin-base;
+
+            @include respond-to(sm) {
+                margin: 0;
+                margin-top: $margin-base;
+            }
         }
     }
 

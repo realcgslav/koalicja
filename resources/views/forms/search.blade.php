@@ -14,3 +14,7 @@
 
   <button>{{ _x('Search', 'submit button', 'sage') }}</button>
 </form>
+
+{{-- Debug output --}}
+<p>Current search query: {{ get_search_query() }}</p>
+<p>Form action URL: {{ home_url('/') }}</p>
